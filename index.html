@@ -30,14 +30,16 @@ function initMap() {
     map.addListener('click', function(mapsMouseEvent) {
         console.log(`lat: ${mapsMouseEvent.latLng.lat()} long:${mapsMouseEvent.latLng.lng()}`);
         // set marker new location - if marker exists and has a .setMap method, hide it
-        if (marker && marker.setMap) {
-            marker.setMap(null);
-        }
+        // if (marker && marker.setMap) {
+        //     marker.setMap(null);
+        // }
         // Set Long and Lat according to the click on map
-        uluru = {lat: mapsMouseEvent.latLng.lat(), lng: mapsMouseEvent.latLng.lng()};
-        // Make the
-        marker = new google.maps.Marker({position: uluru, map: map});
-        console.log('Marker : ', marker)
+        // uluru = {lat: mapsMouseEvent.latLng.lat(), lng: mapsMouseEvent.latLng.lng()};
+        // // Make the
+        // marker = new google.maps.Marker({position: uluru, map: map});
+        // console.log('Marker : ', marker)
+
+        marker.setPosition(mapsMouseEvent.latLng);
     });
 }
     </script>
@@ -47,7 +49,7 @@ function initMap() {
     * The callback parameter executes the initMap() function
     -->
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=xxx&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFeMRSLd6lkoyf759JFHQepXIq2Zph3Cw&v=3&callback=initMap">
     </script>
   </body>
 </html>
