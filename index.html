@@ -30,14 +30,16 @@ function initMap() {
     map.addListener('click', function(mapsMouseEvent) {
         console.log(`lat: ${mapsMouseEvent.latLng.lat()} long:${mapsMouseEvent.latLng.lng()}`);
         // set marker new location - if marker exists and has a .setMap method, hide it
-        if (marker && marker.setMap) {
-            marker.setMap(null);
-        }
-        // Set Long and Lat according to the click on map
-        uluru = {lat: mapsMouseEvent.latLng.lat(), lng: mapsMouseEvent.latLng.lng()};
-        // Make the
-        marker = new google.maps.Marker({position: uluru, map: map});
-        console.log('Marker : ', marker)
+        // if (marker && marker.setMap) {
+        //     marker.setMap(null);
+        // }
+        // // Set Long and Lat according to the click on map
+        // uluru = {lat: mapsMouseEvent.latLng.lat(), lng: mapsMouseEvent.latLng.lng()};
+        // // Make the
+        // marker = new google.maps.Marker({position: uluru, map: map});
+        // console.log('Marker : ', marker)
+
+        marker.setPosition(mapsMouseEvent.latLng);
     });
 }
     </script>
