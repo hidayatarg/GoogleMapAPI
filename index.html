@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 650px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+// Initialize and add the map
+function initMap() {
+  // Intial Location
+    var uluru = {lat: 41.10946898247835, lng: 28.50860953150618};
+
+    var map = new google.maps.Map(
+        document.getElementById('map'), {
+        zoom: 6, 
+        center: uluru
+    });
+    // Inital location of marker to positioned at Uluru
+    var marker = new google.maps.Marker({position: uluru, map: map});
+
+    map.addListener('click', function(mapsMouseEvent) {
+        console.log(`lat: ${mapsMouseEvent.latLng.lat()} long:${mapsMouseEvent.latLng.lng()}`);
+        // set marker new location - if marker exists and has a .setMap method, hide it
+        if (marker && marker.setMap) {
+            marker.setMap(null);
+        }
+        // Set Long and Lat according to the click on map
+        uluru = {lat: mapsMouseEvent.latLng.lat(), lng: mapsMouseEvent.latLng.lng()};
+        // Make the
+        marker = new google.maps.Marker({position: uluru, map: map});
+        console.log('Marker : ', marker)
+    });
+}
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=xxx&callback=initMap">
+    </script>
+  </body>
+</html>
